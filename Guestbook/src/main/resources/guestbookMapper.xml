@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.scit.guestbook.dao.GuestbookMapper">
+	<!-- 방명록 글 등록 -->
+	<insert id="insert" parameterType="Guestbook">
+	INSERT INTO guestbook
+		(guestbooknum, writer, pwd, text)
+	VALUES
+		(guestbook_seq.nextval, #{writer}, #{pwd}, #{text})
+	</insert>
+	
+	<select id = "select" resultType="Guestbook">
+	SELECT *
+	FROM guestbook
+	ORDER BY guestbooknum
+	</select>
+</mapper>
