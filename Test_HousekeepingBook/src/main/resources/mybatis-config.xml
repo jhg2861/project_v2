@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.test.housebook.vo.Account_tb"   alias="Account" />
+		<typeAlias type="com.test.housebook.vo.Moneybook_tb" alias="Moneybook" />
+	
+	</typeAliases>
+	
+	<mappers>
+	<mapper resource="mapper/accountMapper.xml" />
+	<mapper resource="mapper/bookMapper.xml" />
+	</mappers>
+</configuration>
