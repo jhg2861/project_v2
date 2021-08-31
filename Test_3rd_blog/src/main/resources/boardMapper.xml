@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 게시판 처리 SQL -->
+<mapper namespace="global.sesoc.blog.dao.BoardMapper">
+
+	<!-- 블로그 글 목록 -->
+	<select id="list" parameterType="string" resultType="BoardVO">
+		select 
+			boardnum
+			, title
+			, to_char(inputdate, 'YYYY-MM-DD') inputdate
+		from 
+			blog_board 
+		where
+			id like #{id}
+		order by boardnum desc
+	</select>
+	
+	<!-- 블로그 글 읽기 -->
+	<select id="read" parameterType="int" resultType="BoardVO">
+		select 
+			boardnum
+			, id
+			, title
+			, content
+			, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate
+			, likecnt
+		from 
+			blog_board 
+		where 
+			boardnum = #{boardnum}
+	</select>	
+	
+	
+	<!-- 블로그 글 저장 -->
+	<insert id="write" parameterType="BoardVO">
+		insert into blog_board (
+			boardnum
+			, id
+			, title
+			, content
+		)
+		values (
+			blog_board_seq.nextval
+			, #{id}
+			, #{title}
+			, #{content}
+		)
+	</insert>
+
+
+	<!-- 글 삭제 -->
+	<delete id="delete" parameterType="BoardVO">
+		delete
+		from
+			blog_board
+		where
+			boardnum = #{boardnum}
+			and id = #{id}
+	</delete>
+
+
+	<!-- 글 수정 -->
+	<update id="update" parameterType="BoardVO">
+		update
+			blog_board
+		set
+			title = #{title}
+			, content = #{content}
+		where
+			boardnum = #{boardnum}
+			and id = #{id}
+	</update>
+	
+	<!-- 추천수 1 증가 -->
+	<update id="like" parameterType="int">
+		update
+			blog_board
+		set
+			likecnt = likecnt + 1
+		where
+			boardnum = #{boardnum}
+	</update>
+
+</mapper>
