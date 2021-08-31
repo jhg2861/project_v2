@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.scit.ajax.dao.ReplyMapper">
+	<select id="selectAll" resultType="ReplyVO">
+	SELECT
+		replynum
+		, userid
+		, replytext
+		, to_char(regdate, 'YYYY-MM-DD') as regdate
+	FROM
+		reply_test
+	ORDER BY
+		replynum DESC
+	</select>
+	
+	<insert id="insert" parameterType="ReplyVO">
+	INSERT INTO reply_test
+	(
+		replynum
+		, userid
+		, replytext
+	)
+	VALUES
+	(
+		replytest_seq.nextval
+		, #{userid}
+		, #{replytext}
+	)
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+	DELETE FROM reply_test
+	WHERE
+		replynum = #{replynum}
+	</delete>
+	
+	<update id="update" parameterType="ReplyVO">
+	UPDATE reply_test
+	SET
+		replytext = #{replytext}
+		, regdate = sysdate
+	WHERE
+		replynum = #{replynum}
+	</update> 
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
