@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.scit.shop.vo.Book"        alias="Book" />
+		<typeAlias type="com.scit.shop.vo.Bookmembers" alias="Members" />
+		<typeAlias type="com.scit.shop.vo.Sale"        alias="Sale" />
+		<typeAlias type="com.scit.shop.vo.Wishlist"    alias="Wishlist" />
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mappers/memberMapper.xml" />
+		<mapper resource="mappers/bookMapper.xml" />
+	</mappers>
+</configuration>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scit.shop.dao.BookMapper">
+
+<select id="selectAll" resultType="Book">
+	SELECT * FROM book
+</select>
+
+<select id="detailBook" parameterType="int" resultType="Book">
+	SELECT * FROM book
+	WHERE
+		code = #{code}
+</select>
+
+<!-- 관심상품 저장 -->
+<insert id="wishList" parameterType="Wishlist">
+	INSERT INTO wishlist
+	VALUES
+		(#{userid}, #{code})
+</insert>
+
+<!-- 관심 상품 목록 -->
+<select id="wishItemList" resultType="Book" parameterType="string">
+SELECT * FROM book
+WHERE code IN
+ 	(SELECT code FROM wishlist WHERE userid = #{userid})
+</select>
+
+<select id="purchaseList" resultType="Book" parameterType="string">
+SELECT * FROM book
+where code=1
+</select>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
